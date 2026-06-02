@@ -11,13 +11,22 @@ Summary: Terminal with built-in SSH
 
 Development: https://forge.hekkelman.net/maarten/salt
 
+Documentation: https://forge.hekkelman.net/maarten/salt/src/tag/v5.0.1/salt-manual.md
+
 Salt is a terminal emulator with built-in SSH.
 
 Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>GitHub Actions</td>
+    <td>
+      <a href="https://github.com/conda-forge/salt-terminal-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/salt-terminal-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
 </table>
 
 Current release info
