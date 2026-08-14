@@ -23,6 +23,12 @@ build:
     cmake --build build --parallel ${CPU_COUNT}
     ./build/salt -i --prefix ${PREFIX}
 
+    if [[ "${target_platform}" == linux-* ]]; then
+      mkdir -p "${PREFIX}/Menu"
+      cp "${RECIPE_DIR}/menu.json" "${PREFIX}/Menu/salt_menu.json"
+      cp "${RECIPE_DIR}/salt.png" "${PREFIX}/Menu/salt.png"
+    fi
+
 requirements:
   build:
     - ${{ compiler("cxx") }}
@@ -54,6 +60,10 @@ tests:
   - script:
       - salt --version
       - salt --help
+      - if: linux
+        then:
+          - test -f "${PREFIX}/Menu/salt_menu.json"
+          - test -f "${PREFIX}/Menu/salt.png"
 
 about:
   homepage: https://forge.hekkelman.net/maarten/salt
