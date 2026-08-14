@@ -80,10 +80,12 @@ tests:
   - script:
       - salt --version
       - salt --help
-      - if: linux
-        then:
-          - test -f "${PREFIX}/Menu/salt_menu.json"
-          - test -f "${PREFIX}/Menu/salt.png"
+  - package_contents:
+      bin:
+        - salt
+      files:
+        - Menu/salt_menu.json
+        - Menu/salt.png
 
 about:
   homepage: https://forge.hekkelman.net/maarten/salt
