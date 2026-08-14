@@ -10,7 +10,7 @@ source:
   sha256: f322e57b164fd5aa7443807b71327d4ac5ca9520118778baaee959aff84ca141
 
 build:
-  number: 0
+  number: 1
   # Remove windows in the future when we have windows support
   skip:
     - osx
