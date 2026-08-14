@@ -7,11 +7,12 @@
       "description": "Terminal with built-in SSH",
       "icon": "{{ MENU_DIR }}/salt.png",
       "command": ["{{ BIN_DIR }}/salt"],
+      "activate": false,
       "platforms": {
         "linux": {
-          "Categories": ["System", "Utility"],
+          "Categories": ["System", "TerminalEmulator"],
           "GenericName": "Terminal Emulator",
-          "StartupNotify": true,
+          "Keywords": ["terminal", "shell", "ssh"],
           "StartupWMClass": "salt"
         }
       }
