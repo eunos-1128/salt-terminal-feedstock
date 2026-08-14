@@ -45,8 +45,6 @@ build:
 
         if [[ -n "${upstream_icon}" ]]; then
           cp "${upstream_icon}" "${PREFIX}/Menu/salt.png"
-        else
-          cp "${RECIPE_DIR}/salt.png" "${PREFIX}/Menu/salt.png"
         fi
       fi
     fi
