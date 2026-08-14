@@ -36,7 +36,7 @@ build:
         upstream_icon=""
         for search_dir in "${PREFIX}/share" "${PREFIX}/lib" "${PREFIX}/libexec" "${PREFIX}/usr/share" "${PREFIX}/opt"; do
           if [[ -d "${search_dir}" ]]; then
-            upstream_icon="$(find "${search_dir}" -type f \( -iname "salt*.png" -o -iname "salt*.svg" -o -iname "icon*.png" -o -iname "icon*.svg" \) 2>/dev/null | head -n 1)"
+            upstream_icon="$(find "${search_dir}" -type f \( -iname "salt*.png" -o -iname "icon*.png" \) -print -quit 2>/dev/null)"
             if [[ -n "${upstream_icon}" ]]; then
               break
             fi
