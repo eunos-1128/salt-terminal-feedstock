@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.conda.org/menuinst/menuinst-1-1-3.schema.json",
+  "menu_name": "Salt",
+  "menu_items": [
+    {
+      "name": "Salt",
+      "description": "Terminal with built-in SSH",
+      "icon": "{{ MENU_DIR }}/salt.png",
+      "command": ["{{ BIN_DIR }}/salt"],
+      "platforms": {
+        "linux": {
+          "Categories": ["System", "Utility"],
+          "GenericName": "Terminal Emulator",
+          "StartupNotify": true,
+          "StartupWMClass": "salt"
+        }
+      }
+    }
+  ]
+}
