@@ -25,8 +25,30 @@ build:
 
     if [[ "${target_platform}" == linux-* ]]; then
       mkdir -p "${PREFIX}/Menu"
-      cp "${RECIPE_DIR}/menu.json" "${PREFIX}/Menu/salt_menu.json"
-      cp "${RECIPE_DIR}/salt.png" "${PREFIX}/Menu/salt.png"
+
+      # Prefer the icon/menu metadata produced by upstream's installer when
+      # available; only fall back to the recipe-local asset if it is absent.
+      if [[ ! -f "${PREFIX}/Menu/salt_menu.json" ]]; then
+        cp "${RECIPE_DIR}/menu.json" "${PREFIX}/Menu/salt_menu.json"
+      fi
+
+      if [[ ! -f "${PREFIX}/Menu/salt.png" ]]; then
+        upstream_icon=""
+        for search_dir in "${PREFIX}/share" "${PREFIX}/lib" "${PREFIX}/libexec" "${PREFIX}/usr/share" "${PREFIX}/opt"; do
+          if [[ -d "${search_dir}" ]]; then
+            upstream_icon="$(find "${search_dir}" -type f \( -iname "salt*.png" -o -iname "salt*.svg" -o -iname "icon*.png" -o -iname "icon*.svg" \) 2>/dev/null | head -n 1)"
+            if [[ -n "${upstream_icon}" ]]; then
+              break
+            fi
+          fi
+        done
+
+        if [[ -n "${upstream_icon}" ]]; then
+          cp "${upstream_icon}" "${PREFIX}/Menu/salt.png"
+        else
+          cp "${RECIPE_DIR}/salt.png" "${PREFIX}/Menu/salt.png"
+        fi
+      fi
     fi
 
 requirements:
